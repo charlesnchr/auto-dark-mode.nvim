@@ -14,15 +14,14 @@ On macOS the dark mode status is controlled via system settings and the plugin r
 
 In contrast, for support on Linux the current dark mode status is controlled via an environment variable, e.g.  
 
-```cat ~/dotfiles/is_dark_mode
-
+```
+> cat ~/dotfiles/is_dark_mode
 1
 ```
 which indicates that the dark mode is on.
 
 The value can be toggled by editing this file, or for instance by a zshrc command such as
 
-```
 ```
 colo() {
     if [ $(cat ~/dotfiles/is_dark_mode) -eq 1 ]; then x=0; else x=1; fi; echo $x > ~/dotfiles/is_dark_mode
