@@ -10,6 +10,8 @@ local set_dark_mode
 ---@type fun(): nil | nil
 local set_light_mode
 
+local system
+
 ---@type number
 local update_interval
 
@@ -48,6 +50,15 @@ end
                 -- print(tostring(is_dark_mode))
 
                 -- callback(is_dark_mode)
+
+-- second iteration logic
+        -- utils.start_job("xfconf-query -c xsettings -p /Net/ThemeName", {
+        --     on_stdout = function(data)
+        --         local theme_name = trim1(vim.fn.join(data))
+        --         local is_dark_mode = string.find(theme_name:lower(), "dark") ~= nil
+        --         callback(is_dark_mode)
+        --     end
+        -- })
 
 ---@param callback fun(is_dark_mode: boolean)
 local function check_is_dark_mode(callback)
