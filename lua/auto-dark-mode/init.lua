@@ -38,6 +38,17 @@ local function parse_query_response(res)
 	return false
 end
 
+-- old logic
+        -- utils.start_job("cat ~/dotfiles/is_dark_mode", {
+        --     on_stdout = function(data)
+        --         local output = ""
+        --         output = output .. vim.fn.join(data)
+
+                -- local is_dark_mode = trim1(output) == "1"
+                -- print(tostring(is_dark_mode))
+
+                -- callback(is_dark_mode)
+
 ---@param callback fun(is_dark_mode: boolean)
 local function check_is_dark_mode(callback)
 	utils.start_job(query_command, {
