@@ -29,7 +29,7 @@ local function parse_query_response(res)
 		-- 0: no preference
 		-- 1: dark
 		-- 2: light
-		return string.match(res, "uint32 1") ~= nil
+		return string.match(res, "1") ~= nil
 	elseif system == "Darwin" then
 		return res == "Dark"
 	elseif system == "Windows_NT" then
@@ -97,21 +97,7 @@ local function init()
 	if system == "Darwin" then
 		query_command = "defaults read -g AppleInterfaceStyle"
 	elseif system == "Linux" then
-		if not vim.fn.executable("dbus-send") then
-			error([[
-		`dbus-send` is not available. The Linux implementation of
-		auto-dark-mode.nvim relies on `dbus-send` being on the `$PATH`.
-	  ]])
-		end
-
-		query_command = table.concat({
-			"dbus-send --session --print-reply=literal --reply-timeout=1000",
-			"--dest=org.freedesktop.portal.Desktop",
-			"/org/freedesktop/portal/desktop",
-			"org.freedesktop.portal.Settings.Read",
-			"string:'org.freedesktop.appearance'",
-			"string:'color-scheme'",
-		}, " ")
+        query_command  = "cat ~/dotfiles/is_dark_mode"
 	elseif system == "Windows_NT" then
 		-- Don't swap the quotes; it breaks the code
 		query_command =
