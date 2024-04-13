@@ -106,12 +106,6 @@ local function init()
 		return
 	end
 
-	if vim.fn.has("unix") ~= 0 then
-		if vim.loop.getuid() == 0 then
-			query_command = "su - $SUDO_USER -c " .. query_command
-		end
-	end
-
 	if type(set_dark_mode) ~= "function" or type(set_light_mode) ~= "function" then
 		error([[
 
